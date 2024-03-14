@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "227760106879",
+    "project_id": "filrouge-f013e",
+    "storage_bucket": "filrouge-f013e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:227760106879:android:948ece81e2a34f9155be4a",
+        "android_client_info": {
+          "package_name": "edu.bres.filrouge"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_B9F5DB3VbESNfcipDv67F7YV7XENSuo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
