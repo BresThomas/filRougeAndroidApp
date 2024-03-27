@@ -9,7 +9,7 @@
 
 
     <TextView
-        android:id="@+id/titlePage"
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Site vente"
@@ -20,33 +20,52 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 
-    <TextView
-        android:id="@+id/titreProduit"
+    <SeekBar
+        android:id="@+id/seekbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
-        app:layout_constraintTop_toBottomOf="@id/characterPicture"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"/>
-
-
-    <ImageView
-        android:id="@+id/characterPicture"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:padding="5dp"
-        android:layout_margin="70dp"
-        app:layout_constraintTop_toBottomOf="@id/titlePage"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/title"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent"
+        />
 
-    <ListView
-        android:id="@+id/listView"
+    <LinearLayout
+        android:id="@+id/selector"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        app:layout_constraintTop_toBottomOf="@+id/titreProduit"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginHorizontal="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
 
+        <TextView
+            android:id="@+id/value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:gravity="right"
+            android:singleLine="true"
+            android:text="0"
+            android:textSize="20dp" />
+    </LinearLayout>
+
+    <GridView
+        android:id="@+id/gridView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="30dp"
+        android:numColumns="2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/selector"
+        app:layout_constraintVertical_bias="1.0">
+
+    </GridView>
 </androidx.constraintlayout.widget.ConstraintLayout>
