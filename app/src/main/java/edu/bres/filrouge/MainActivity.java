@@ -1,12 +1,17 @@
 package edu.bres.filrouge;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ListView;
@@ -24,11 +29,14 @@ public class MainActivity extends AppCompatActivity implements Clickable {
     private ProduitAdapter adapter;
     private final List<ProduitInterface> produitInterfaces = new ArrayList<>(); //complete list
     private final List<ProduitInterface> displayedProduit = new ArrayList<>(); //displayed list
+    //private ImageView loadingAnimation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //loadingAnimation = findViewById(R.id.loadingAnimation); // Initialize the loading animation ImageView
 
         if (displayedProduit.isEmpty()) {
             // Load products from Firebase Firestore
@@ -69,19 +77,26 @@ public class MainActivity extends AppCompatActivity implements Clickable {
         int itemIndex = findIndexInList(index);
         Log.d(TAG, "clicked on = " + produitInterfaces.get(itemIndex).getName());
 
+        // Afficher l'animation de chargement
+        //loadingAnimation.setVisibility(View.VISIBLE);
+
+        // Créer un ObjectAnimator pour déplacer l'animation de droite à centre
+        //ObjectAnimator animator = ObjectAnimator.ofFloat(
+                //loadingAnimation,
+                //"translationX",
+                //loadingAnimation.getTranslationX(),
+                //(getResources().getDisplayMetrics().widthPixels / 2 - loadingAnimation.getWidth() / 2)
+        //);
+
+        //animator.setDuration(1000); // Durée de l'animation en millisecondes
+        //animator.start(); // Démarrer l'animation
+
         // Assuming ProduitActivity is already defined
         Intent intent = new Intent(this, ProduitActivity.class);
         intent.putExtra("character", produitInterfaces.get(itemIndex));
         startActivity(intent);
     }
 
-    /**
-     * Return index in the complete list matching with the ProduitInterface
-     * found at index parameter position in the current displayed list
-     *
-     * @param index in the displayed list
-     * @return index in the complete list matching with the item to find
-     */
     private int findIndexInList(int index) {
         ProduitInterface itemToFind = displayedProduit.get(index);
         for (int i = 0; i < produitInterfaces.size(); i++) {

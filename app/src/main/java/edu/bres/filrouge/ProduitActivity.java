@@ -18,7 +18,7 @@ public class ProduitActivity extends AppCompatActivity {
         //Button button = findViewById(R.id.button);
         TextView characterNameText = findViewById(R.id.characterName);
         ImageView characterPictureImage = findViewById(R.id.characterPicture);
-        TextView characterDescriptionText = findViewById(R.id.characterDescription);
+        TextView characterDescriptionText = findViewById(R.id.produitDescription);
 
         titleTextView.setText("OnePiece characters");
         characterNameText.setText(character.getName());

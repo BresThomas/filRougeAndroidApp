@@ -67,8 +67,17 @@
         app:layout_constraintEnd_toEndOf="@id/characterPrice"
         android:layout_marginTop="8dp" />
 
+    <ImageView
+        android:id="@+id/loadingAnimation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/title"/>
+
+
     <TextView
-        android:id="@+id/characterDescription"
+        android:id="@+id/produitDescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Description du Produit"
@@ -85,9 +94,9 @@
         android:text="Ajouter au Panier"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/characterDescription"
-        app:layout_constraintStart_toStartOf="@id/characterDescription"
-        app:layout_constraintEnd_toEndOf="@id/characterDescription"
+        app:layout_constraintTop_toBottomOf="@id/produitDescription"
+        app:layout_constraintStart_toStartOf="@id/produitDescription"
+        app:layout_constraintEnd_toEndOf="@id/produitDescription"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp" />
 
