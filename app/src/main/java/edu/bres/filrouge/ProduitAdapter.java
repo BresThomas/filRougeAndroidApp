@@ -56,7 +56,6 @@ public class ProduitAdapter extends BaseAdapter {
         //(3) : Mise à jour des valeurs
         name.setText(items.get(position).getName());
         grade.setText((new DecimalFormat("##.##")).format(items.get(position).getValue()));
-        //picture.setImageResource(items.get(position).getPicture());
         Picasso.get().load(items.get(position).getPicture()).into(picture);
 
         //(4) écouteur sur chaque élément de l'adapter

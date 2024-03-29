@@ -19,7 +19,7 @@
         android:layout_marginBottom="16dp" />
 
     <ImageView
-        android:id="@+id/characterPicture"
+        android:id="@+id/productPicture"
         android:layout_width="0dp"
         android:layout_height="200dp"
         android:layout_marginTop="16dp"
@@ -39,9 +39,9 @@
         android:text="Nom du Produit"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/characterPicture"
-        app:layout_constraintStart_toStartOf="@id/characterPicture"
-        app:layout_constraintEnd_toEndOf="@id/characterPicture"
+        app:layout_constraintTop_toBottomOf="@id/productPicture"
+        app:layout_constraintStart_toStartOf="@id/productPicture"
+        app:layout_constraintEnd_toEndOf="@id/productPicture"
         android:layout_marginTop="16dp" />
 
     <TextView
