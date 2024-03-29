@@ -9,12 +9,12 @@ public class Produit implements ProduitInterface {
     private String description;
     private boolean isFavorite;
     private String picture;
-    public Produit(String name, String description, String picture) {
+    public Produit(String name, String description, String picture, float value) {
         this.name = name;
         this.isFavorite = false;
         this.picture = picture;
         this.description = description;
-        value = (name.charAt(0) / name.length() / 3) / 2.0f;
+        this.value = value;
     }
     @Override
     public String getDescription() {

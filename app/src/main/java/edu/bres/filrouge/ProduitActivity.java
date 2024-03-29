@@ -25,7 +25,6 @@ public class ProduitActivity extends AppCompatActivity {
         //characterPictureImage.setImageResource(character.getPicture());
         characterDescriptionText.setText(character.getDescription());
 
-
     }
 }
 

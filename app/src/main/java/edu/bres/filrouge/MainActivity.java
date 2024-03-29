@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ListView;
+import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -22,6 +24,8 @@ public class MainActivity extends AppCompatActivity implements Clickable {
 
     private final String TAG = "wallner " + getClass().getSimpleName();
     private ProduitAdapter adapter;
+    private float note = 0;
+    private TextView displayNote;
     private final List<ProduitInterface> produitInterfaces = new ArrayList<>(); //complete list
     private final List<ProduitInterface> displayedProduit = new ArrayList<>(); //displayed list
 
@@ -29,6 +33,10 @@ public class MainActivity extends AppCompatActivity implements Clickable {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        final SeekBar seekBar = findViewById(R.id.seekBar);
+        seekBar.setMax(10);
+        displayNote = findViewById(R.id.value);
 
         if (displayedProduit.isEmpty()) {
             // Load products from Firebase Firestore
@@ -41,8 +49,9 @@ public class MainActivity extends AppCompatActivity implements Clickable {
                                 String name = document.getString("titre");
                                 String url = document.getString("url_image");
                                 String description = document.getString("description");
+                                float value = document.getLong("note");
                                 if (name != null && url != null && description != null) {
-                                    Produit produit = new Produit(name, description, url);
+                                    Produit produit = new Produit(name, description, url,value);
                                     produitInterfaces.add(produit);
                                     displayedProduit.add(produit); // Assuming all products are initially displayed
                                 }
@@ -55,10 +64,42 @@ public class MainActivity extends AppCompatActivity implements Clickable {
         } else {
             initGridView(); // Initialize GridView if products are already loaded
         }
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                note = progress / 2f; // Progression de 0.5 en 0.5
+                displayNote.setText(String.format("%.1f/5", note));
+
+                updateDisplayedProducts();
+            }
+
+            private void updateDisplayedProducts() {
+                displayedProduit.clear(); // Clear the displayed products list
+
+                // Filter products based on the current note
+                for (ProduitInterface produit : produitInterfaces) {
+                    if (produit.getValue() >= note) {
+                        displayedProduit.add(produit);
+                    }
+                }
+
+                adapter.notifyDataSetChanged(); // Notify adapter of the data change
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
+
+        // Réglez la progression initiale et affichez la note
+        seekBar.setProgress((int) (note * 2)); // Convertissez la note en progression de la SeekBar
+        displayNote.setText(String.format("%.1f/5", note));
     }
 
     private void initGridView() {
-        GridView gridView = findViewById(R.id.gridView);
+        GridView gridView = findViewById(R.id.meilleursProduits);
 
         adapter = new ProduitAdapter(displayedProduit, this, this);
         gridView.setAdapter(adapter);
@@ -103,4 +144,6 @@ public class MainActivity extends AppCompatActivity implements Clickable {
     public Context getContext() {
         return getApplicationContext();
     }
+
+
 }
