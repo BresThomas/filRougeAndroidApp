@@ -15,19 +15,19 @@ public class ProduitActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_character);
+        setContentView(R.layout.activity_product);
         Produit product = getIntent().getParcelableExtra("character");
 
         TextView titleTextView = findViewById(R.id.title);
         //Button button = findViewById(R.id.button);
-        TextView characterNameText = findViewById(R.id.characterName);
+        TextView productNameText = findViewById(R.id.productName);
         ImageView picture = findViewById(R.id.productPicture);
-        TextView characterDescriptionText = findViewById(R.id.characterDescription);
+        TextView productDescriptionText = findViewById(R.id.productDescription);
 
         titleTextView.setText("Product page");
-        characterNameText.setText(product.getName());
+        productNameText.setText(product.getName());
         Picasso.get().load(product.getPicture()).into(picture);
-        characterDescriptionText.setText(product.getDescription());
+        productDescriptionText.setText(product.getDescription());
 
 
     }

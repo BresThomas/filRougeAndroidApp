@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.app.ProgressDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -17,10 +18,8 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
-
-public class MainActivity extends AppCompatActivity implements Clickable {
-
-    private final String TAG = "wallner " + getClass().getSimpleName();
+public class MainActivity extends AppCompatActivity implements PostExecuteActivity<Panier>, Clickable {
+    private final String TAG = "bres, bitoun, wallner " + getClass().getSimpleName();
     private ProduitAdapter adapter;
     private final List<ProduitInterface> produitInterfaces = new ArrayList<>(); //complete list
     private final List<ProduitInterface> displayedProduit = new ArrayList<>(); //displayed list
@@ -29,6 +28,9 @@ public class MainActivity extends AppCompatActivity implements Clickable {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        String url = "http://edu.info06.net/onepiece/characters.json";
+        new HttpAsyncGet<>(url, Panier.class, this, new ProgressDialog(MainActivity.this) );
 
         if (displayedProduit.isEmpty()) {
             // Load products from Firebase Firestore
@@ -39,10 +41,10 @@ public class MainActivity extends AppCompatActivity implements Clickable {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 String name = document.getString("titre");
-                                String url = document.getString("url_image");
+                                String url_image = document.getString("url_image");
                                 String description = document.getString("description");
-                                if (name != null && url != null && description != null) {
-                                    Produit produit = new Produit(name, description, url);
+                                if (name != null && url_image != null && description != null) {
+                                    Produit produit = new Produit(name, description, url_image);
                                     produitInterfaces.add(produit);
                                     displayedProduit.add(produit); // Assuming all products are initially displayed
                                 }
@@ -100,7 +102,18 @@ public class MainActivity extends AppCompatActivity implements Clickable {
     }
 
     @Override
+    public void onPostExecute(List<Panier> itemList) {
+        Log.d(TAG, itemList.toString());
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+        super.onPointerCaptureChanged(hasCapture);
+    }
+
+    @Override
     public Context getContext() {
         return getApplicationContext();
     }
+
 }
