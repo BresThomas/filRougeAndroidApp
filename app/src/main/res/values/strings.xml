@@ -3,4 +3,5 @@
     <string name="titre">les pegros nuent</string>
     <string name="note">Note :</string>
     <string name="boutonNote">Rechercher</string>
+    <string name="titrePanier">Panier</string>
 </resources>
