@@ -6,19 +6,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.app.ProgressDialog;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.Button;
+
+import java.util.Locale;
 import android.widget.GridView;
-import android.widget.ListView;
-import android.widget.Toast;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
-public class MainActivity extends AppCompatActivity implements PostExecuteActivity<Panier>, Clickable {
+public class MainActivity extends AppCompatActivity implements PostExecuteActivity<ProduitPanier>, Clickable {
     private final String TAG = "bres, bitoun, wallner " + getClass().getSimpleName();
     private ProduitAdapter adapter;
     private final List<ProduitInterface> produitInterfaces = new ArrayList<>(); //complete list
@@ -29,8 +26,8 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        String url = "http://edu.info06.net/onepiece/characters.json";
-        new HttpAsyncGet<>(url, Panier.class, this, new ProgressDialog(MainActivity.this) );
+        String url = "https://bresthomas.github.io/jsonHosting/produitPanier.json";
+        new HttpAsyncGet<>(url, ProduitPanier.class, this, new ProgressDialog(MainActivity.this) );
 
         if (displayedProduit.isEmpty()) {
             // Load products from Firebase Firestore
@@ -102,8 +99,13 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
     }
 
     @Override
-    public void onPostExecute(List<Panier> itemList) {
+    public void onPostExecute(List<ProduitPanier> itemList) {
         Log.d(TAG, itemList.toString());
+
+        for(ProduitPanier produit : itemList) {
+            Log.d(TAG, produit.getName());
+        }
+
     }
 
     @Override

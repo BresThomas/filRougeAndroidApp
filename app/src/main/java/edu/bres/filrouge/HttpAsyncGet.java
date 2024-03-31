@@ -2,8 +2,10 @@ package edu.bres.filrouge;
 
 import android.app.ProgressDialog;
 import android.util.Log;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,7 +24,7 @@ import java.util.concurrent.Executors;
  * @author Thomas BRES - March 2024
  */
 public class HttpAsyncGet<T>{
-    private static final String TAG = "fred " + HttpAsyncGet.class.getSimpleName();    //Pour affichage en cas d'erreur
+    private static final String TAG = "Bres, Bitoun, Wallner " + HttpAsyncGet.class.getSimpleName();    //Pour affichage en cas d'erreur
     private final Class<T> clazz;
     private List<T> itemList;
     private final HttpHandler webService;

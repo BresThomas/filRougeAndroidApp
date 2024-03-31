@@ -1,13 +1,11 @@
 package edu.bres.filrouge;
 
-import java.util.List;
+import android.util.Log;
+
 import java.util.Map;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-public class Panier {
-
+public class ProduitPanier {
+    private final String TAG = "bres, bitoun, wallner " + getClass().getSimpleName();
     private int id;
     private boolean isFavorite;
     private Map<String, String> name; //depends of settings language
@@ -32,8 +30,7 @@ public class Panier {
     }
 
     public String getName() {
-        //return name.get(filrouge.getContext().getString(R.string.LANGUAGE));
-        return "test";
+        return name.get(VenteApp.getContext().getString(R.string.LANGUAGE));
     }
 
     public void setName(Map<String, String> name) {
@@ -41,8 +38,7 @@ public class Panier {
     }
 
     public String getDescription() {
-        //return description.get(OnePieceApp.getContext().getString(R.string.LANGUAGE));
-        return "test";
+        return description.get(VenteApp.getContext().getString(R.string.LANGUAGE));
     }
 
     public void setDescription(Map<String, String> description) {
