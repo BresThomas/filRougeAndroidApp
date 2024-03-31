@@ -33,7 +33,7 @@
         android:adjustViewBounds="true" />
 
     <TextView
-        android:id="@+id/characterName"
+        android:id="@+id/productName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Nom du Produit"
@@ -45,30 +45,31 @@
         android:layout_marginTop="16dp" />
 
     <TextView
-        android:id="@+id/characterPrice"
+        android:id="@+id/productPrice"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Prix: 0.00 €"
         android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@id/characterName"
-        app:layout_constraintStart_toStartOf="@id/characterName"
-        app:layout_constraintEnd_toEndOf="@id/characterName"
+        app:layout_constraintTop_toBottomOf="@id/productName"
+        app:layout_constraintStart_toStartOf="@id/productName"
+        app:layout_constraintEnd_toEndOf="@id/productName"
         android:layout_marginTop="8dp" />
 
     <RatingBar
         android:id="@+id/ratingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:numStars="5"
         android:rating="0"
         android:stepSize="0.5"
-        app:layout_constraintTop_toBottomOf="@id/characterPrice"
-        app:layout_constraintStart_toStartOf="@id/characterPrice"
-        app:layout_constraintEnd_toEndOf="@id/characterPrice"
-        android:layout_marginTop="8dp" />
+        app:layout_constraintEnd_toEndOf="@id/productPrice"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/productPrice"
+        app:layout_constraintTop_toBottomOf="@id/productPrice" />
 
     <TextView
-        android:id="@+id/characterDescription"
+        android:id="@+id/productDescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Description du Produit"
@@ -85,9 +86,9 @@
         android:text="Ajouter au Panier"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/characterDescription"
-        app:layout_constraintStart_toStartOf="@id/characterDescription"
-        app:layout_constraintEnd_toEndOf="@id/characterDescription"
+        app:layout_constraintTop_toBottomOf="@id/productDescription"
+        app:layout_constraintStart_toStartOf="@id/productDescription"
+        app:layout_constraintEnd_toEndOf="@id/productDescription"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp" />
 

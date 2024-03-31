@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">filRouge</string>
-    <string name="titre">les pegros nuent</string>
+    <string name="titre">titre</string>
     <string name="note">Note :</string>
     <string name="boutonNote">Rechercher</string>
     <string name="titrePanier">Panier</string>
+    <string name="LANGUAGE">french</string>
 </resources>

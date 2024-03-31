@@ -5,9 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.Button;
+import android.app.ProgressDialog;
+
+import java.util.Locale;
 import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.SeekBar;
@@ -19,10 +19,8 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
-
-public class MainActivity extends AppCompatActivity implements Clickable {
-
-    private final String TAG = "wallner " + getClass().getSimpleName();
+public class MainActivity extends AppCompatActivity implements PostExecuteActivity<ProduitPanier>, Clickable {
+    private final String TAG = "bres, bitoun, wallner " + getClass().getSimpleName();
     private ProduitAdapter adapter;
     private float note = 0;
     private TextView displayNote;
@@ -33,6 +31,9 @@ public class MainActivity extends AppCompatActivity implements Clickable {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        String url = "https://bresthomas.github.io/jsonHosting/produitPanier.json";
+        new HttpAsyncGet<>(url, ProduitPanier.class, this, new ProgressDialog(MainActivity.this) );
 
         final SeekBar seekBar = findViewById(R.id.seekBar);
         seekBar.setMax(10);
@@ -47,11 +48,11 @@ public class MainActivity extends AppCompatActivity implements Clickable {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 String name = document.getString("titre");
-                                String url = document.getString("url_image");
+                                String url_image = document.getString("url_image");
                                 String description = document.getString("description");
                                 float value = document.getLong("note");
-                                if (name != null && url != null && description != null) {
-                                    Produit produit = new Produit(name, description, url,value);
+                                if (name != null && url_image != null && description != null) {
+                                    Produit produit = new Produit(name, description, url_image, value);
                                     produitInterfaces.add(produit);
                                     displayedProduit.add(produit); // Assuming all products are initially displayed
                                 }
@@ -141,9 +142,22 @@ public class MainActivity extends AppCompatActivity implements Clickable {
     }
 
     @Override
+    public void onPostExecute(List<ProduitPanier> itemList) {
+        Log.d(TAG, itemList.toString());
+
+        for(ProduitPanier produit : itemList) {
+            Log.d(TAG, produit.getName());
+        }
+
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+        super.onPointerCaptureChanged(hasCapture);
+    }
+
+    @Override
     public Context getContext() {
         return getApplicationContext();
     }
-
-
 }
