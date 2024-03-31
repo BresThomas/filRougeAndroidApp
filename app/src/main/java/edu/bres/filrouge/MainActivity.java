@@ -6,7 +6,9 @@ import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +16,7 @@ import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -72,26 +75,45 @@ public class MainActivity extends AppCompatActivity implements Clickable {
         gridView.setAdapter(adapter);
     }
 
+    void afficherLoadingAvecAnimation() {
+        setContentView(R.layout.activity_loading);
+
+        ImageView imageViewAnimation = findViewById(R.id.imageloadinganimation);
+        imageViewAnimation.setBackgroundResource(R.drawable.frame_animation_list);
+
+        // Obtenir l'AnimationDrawable à partir de l'ImageView
+        AnimationDrawable animationDrawable = (AnimationDrawable) imageViewAnimation.getBackground();
+
+        // Démarrer l'animation
+        animationDrawable.start();
+
+        // Créer un ObjectAnimator pour la rotation continue de l'ImageView
+        ObjectAnimator rotationAnimator = ObjectAnimator.ofFloat(
+                imageViewAnimation,
+                "rotation",
+                0f,
+                360f
+        );
+        rotationAnimator.setDuration(3000);
+        rotationAnimator.setRepeatCount(ObjectAnimator.INFINITE);
+        rotationAnimator.start();
+
+        // Revenir à MainActivity après 3 secondes
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        }, 3000);
+    }
+
+
     @Override
     public void onClicItem(int index) {
         int itemIndex = findIndexInList(index);
         Log.d(TAG, "clicked on = " + produitInterfaces.get(itemIndex).getName());
-
-        // Afficher l'animation de chargement
-        //loadingAnimation.setVisibility(View.VISIBLE);
-
-        // Créer un ObjectAnimator pour déplacer l'animation de droite à centre
-        //ObjectAnimator animator = ObjectAnimator.ofFloat(
-                //loadingAnimation,
-                //"translationX",
-                //loadingAnimation.getTranslationX(),
-                //(getResources().getDisplayMetrics().widthPixels / 2 - loadingAnimation.getWidth() / 2)
-        //);
-
-        //animator.setDuration(1000); // Durée de l'animation en millisecondes
-        //animator.start(); // Démarrer l'animation
-
-        // Assuming ProduitActivity is already defined
         Intent intent = new Intent(this, ProduitActivity.class);
         intent.putExtra("character", produitInterfaces.get(itemIndex));
         startActivity(intent);
