@@ -39,20 +39,20 @@
         android:text="Nom du Produit"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/productPicture"
-        app:layout_constraintStart_toStartOf="@id/productPicture"
-        app:layout_constraintEnd_toEndOf="@id/productPicture"
+        app:layout_constraintTop_toBottomOf="@id/produitPicture"
+        app:layout_constraintStart_toStartOf="@id/produitPicture"
+        app:layout_constraintEnd_toEndOf="@id/produitPicture"
         android:layout_marginTop="16dp" />
 
     <TextView
-        android:id="@+id/productPrice"
+        android:id="@+id/produitPrice"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Prix: 0.00 €"
         android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@id/productName"
-        app:layout_constraintStart_toStartOf="@id/productName"
-        app:layout_constraintEnd_toEndOf="@id/productName"
+        app:layout_constraintTop_toBottomOf="@id/produitName"
+        app:layout_constraintStart_toStartOf="@id/produitName"
+        app:layout_constraintEnd_toEndOf="@id/produitName"
         android:layout_marginTop="8dp" />
 
     <RatingBar
@@ -63,13 +63,22 @@
         android:numStars="5"
         android:rating="0"
         android:stepSize="0.5"
-        app:layout_constraintEnd_toEndOf="@id/productPrice"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@id/productPrice"
-        app:layout_constraintTop_toBottomOf="@id/productPrice" />
+        app:layout_constraintTop_toBottomOf="@id/produitPrice"
+        app:layout_constraintStart_toStartOf="@id/produitPrice"
+        app:layout_constraintEnd_toEndOf="@id/produitPrice"
+        android:layout_marginTop="8dp" />
+
+    <ImageView
+        android:id="@+id/loadingAnimation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/title"/>
+
 
     <TextView
-        android:id="@+id/productDescription"
+        android:id="@+id/produitDescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Description du Produit"
@@ -86,9 +95,9 @@
         android:text="Ajouter au Panier"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/productDescription"
-        app:layout_constraintStart_toStartOf="@id/productDescription"
-        app:layout_constraintEnd_toEndOf="@id/productDescription"
+        app:layout_constraintTop_toBottomOf="@id/produitDescription"
+        app:layout_constraintStart_toStartOf="@id/produitDescription"
+        app:layout_constraintEnd_toEndOf="@id/produitDescription"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp" />
 

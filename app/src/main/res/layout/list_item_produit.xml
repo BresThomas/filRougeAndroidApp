@@ -13,13 +13,47 @@ android:padding="16dp">
     android:id="@+id/titreProduit"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:textStyle="bold"
-    android:textSize="18sp"/>
+    android:orientation="vertical"
+    android:padding="16dp">
 
-<TextView
-    android:id="@+id/descriptionProduit"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="8dp"/>
+    <ImageView
+        android:id="@+id/imageProduit"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:padding="5dp"
+        android:background="@color/greycolor"
+        android:layout_gravity="left"
+        android:layout_marginTop="22dp" />
+
+    <TextView
+        android:id="@+id/descriptionProduit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="@color/cardview_dark_background"
+        android:text="TextView" />
+
+    <Button
+        android:id="@+id/buttonPannier"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:text="Ajouter au panier"
+        android:layout_marginBottom="22dp"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        android:background="@drawable/button_background"
+        android:textColor="@android:color/black"
+        android:textSize="13sp"
+        android:paddingVertical="7dp"
+        android:paddingHorizontal="24dp"
+        android:elevation="4dp"
+        />
 
 </LinearLayout>
