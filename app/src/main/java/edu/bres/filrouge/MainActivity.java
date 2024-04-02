@@ -8,14 +8,20 @@ import android.util.Log;
 import android.app.ProgressDialog;
 
 import java.util.Locale;
+
+import android.view.MenuItem;
 import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.android.material.navigation.NavigationBarView;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +37,10 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        NavigationBarView navigationBarView = findViewById(R.id.navBar);
+
+        navigationBarView.setOnItemSelectedListener(navListener);
 
         String url = "https://bresthomas.github.io/jsonHosting/produitPanier.json";
         new HttpAsyncGet<>(url, ProduitPanier.class, this, new ProgressDialog(MainActivity.this) );
@@ -98,6 +108,21 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
         seekBar.setProgress((int) (note * 2)); // Convertissez la note en progression de la SeekBar
         displayNote.setText(String.format("%.1f/5", note));
     }
+
+    private NavigationBarView.OnItemSelectedListener  navListener =
+            item -> {
+                int id = item.getItemId();
+                Intent intent = null;
+                if(id == R.id.navigation_home){
+                    Toast.makeText(this,"You are already on home", Toast.LENGTH_SHORT).show();
+                } else if (id == R.id.navigation_panier) {
+                    intent = new Intent(MainActivity.this, PanierActivity.class);
+                } else if (intent != null) {
+                    startActivity(intent);
+                    return true;
+                }
+                return false;
+            };
 
     private void initGridView() {
         GridView gridView = findViewById(R.id.meilleursProduits);
