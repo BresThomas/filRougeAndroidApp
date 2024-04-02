@@ -1,7 +1,6 @@
 package edu.bres.filrouge;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +14,15 @@ import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * Adaptateur personnalisé pour afficher une liste de produits dans une ListView ou une GridView.
+ * Cet adaptateur lie les données de type ProduitInterface à une vue personnalisée pour chaque élément de la liste.
+ * Il utilise Picasso pour charger les images des produits à partir de leur URL.
+ * L'activité appelante doit implémenter l'interface Clickable pour gérer les clics sur les éléments de la liste.
+ * 
+ * @see ProduitInterface
+ * @see Clickable
+ */
 public class ProduitAdapter extends BaseAdapter {
 
     private static final String TAG = "Bres, Bitoun, Wallner";
@@ -22,20 +30,30 @@ public class ProduitAdapter extends BaseAdapter {
     private final LayoutInflater mInflater;
     private Clickable callBackActivity;
 
+    /**
+     * Constructeur de l'adaptateur ProduitAdapter.
+     * 
+     * @param items La liste des produits à afficher.
+     * @param callBackActivity L'activité appelante qui implémente l'interface Clickable.
+     * @param context Le contexte de l'application.
+     */
     public ProduitAdapter(List<ProduitInterface> items, Clickable callBackActivity, Context context) {
         this.items = items;
         this.callBackActivity = callBackActivity;
         mInflater = LayoutInflater.from(context);
     }
 
+    @Override
     public int getCount() {
         return items.size();
     }
 
+    @Override
     public Object getItem(int position) {
         return items.get(position);
     }
 
+    @Override
     public long getItemId(int position) {
         return position;
     }
@@ -67,5 +85,4 @@ public class ProduitAdapter extends BaseAdapter {
         //On retourne l'item créé.
         return layoutItem;
     }
-
 }

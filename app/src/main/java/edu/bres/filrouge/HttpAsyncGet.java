@@ -19,17 +19,27 @@ import java.util.List;
 import java.util.concurrent.Executors;
 
 /**
- * construit un Objet T depuis un fichier json dont l'adress URL est passé en paramètre
- * Tache asynchrone
- * @author Thomas BRES - March 2024
+ * Cette classe représente une tâche asynchrone pour récupérer des données JSON à partir d'une URL donnée
+ * et construire un objet de type T à partir de ces données.
+ * 
+ * @param <T> Le type d'objet à construire à partir des données JSON.
+ * 
+ * @author [Bitoun, Bre, Wallner] - March 2024
  */
 public class HttpAsyncGet<T>{
-    private static final String TAG = "Bres, Bitoun, Wallner " + HttpAsyncGet.class.getSimpleName();    //Pour affichage en cas d'erreur
+    private static final String TAG = "Bres, Bitoun, Wallner " + HttpAsyncGet.class.getSimpleName();    // Pour affichage en cas d'erreur
     private final Class<T> clazz;
     private List<T> itemList;
     private final HttpHandler webService;
 
-
+    /**
+     * Constructeur de la classe HttpAsyncGet.
+     * 
+     * @param url L'URL à partir de laquelle récupérer les données JSON.
+     * @param clazz Le type de classe à construire à partir des données JSON.
+     * @param activity L'activité qui va traiter les résultats après leur récupération.
+     * @param progressDialog La boîte de dialogue de progression affichée pendant le chargement des données.
+     */
     public HttpAsyncGet(String url, Class<T> clazz, PostExecuteActivity activity, ProgressDialog progressDialog) {
         super();
         webService = new HttpHandler();
@@ -45,7 +55,11 @@ public class HttpAsyncGet<T>{
         Executors.newSingleThreadExecutor().execute( runnable );
     }
 
-
+    /**
+     * Méthode exécutée en arrière-plan pour récupérer les données JSON à partir de l'URL spécifiée.
+     * 
+     * @param urlAddress L'adresse URL à partir de laquelle récupérer les données JSON.
+     */
     public void doInBackGround(String urlAddress){
         // get the jsonStr to parse
         String jsonStr = webService.makeServiceCall(urlAddress);
@@ -60,18 +74,37 @@ public class HttpAsyncGet<T>{
         }
     }
 
+    /**
+     * Renvoie la liste des objets récupérés à partir des données JSON.
+     * 
+     * @return La liste d'objets construits à partir des données JSON.
+     */
     public List<T> getItemResult() {
         return itemList;
     }
 
+    /**
+     * Affiche la boîte de dialogue de progression avant de commencer la récupération des données.
+     * 
+     * @param progressDialog La boîte de dialogue de progression à afficher.
+     */
     public void onPreExecute( ProgressDialog progressDialog ) {
         progressDialog.setMessage("Connexion en cours...");
         progressDialog.setCancelable(false);
         progressDialog.show();
     }
 
+    /**
+     * Cette classe interne gère les requêtes HTTP pour récupérer les données JSON.
+     */
     static class HttpHandler { //innerClass
 
+        /**
+         * Effectue une requête HTTP GET pour récupérer les données JSON à partir de l'URL spécifiée.
+         * 
+         * @param reqUrl L'URL à partir de laquelle récupérer les données JSON.
+         * @return La réponse sous forme de chaîne de caractères.
+         */
         public String makeServiceCall(String reqUrl) {
             String response = null;
             try {
@@ -92,7 +125,12 @@ public class HttpAsyncGet<T>{
             return response;
         }
 
-        //Conversion flux en String
+        /**
+         * Convertit un flux d'entrée en une chaîne de caractères.
+         * 
+         * @param inputStream Le flux d'entrée à convertir.
+         * @return La chaîne de caractères résultante.
+         */
         private String convertStreamToString(InputStream inputStream) {
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
             StringBuilder stringBuilder = new StringBuilder();
