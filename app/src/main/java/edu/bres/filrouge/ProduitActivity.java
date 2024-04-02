@@ -18,7 +18,8 @@ public class ProduitActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_character);
+        setContentView(R.layout.activity_product);
+        Produit product = getIntent().getParcelableExtra("character");
 
         // Initialisation des éléments de l'interface utilisateur
         Produit character = getIntent().getParcelableExtra("character");
@@ -30,7 +31,7 @@ public class ProduitActivity extends AppCompatActivity {
         // Affichage des informations du produit
         titleTextView.setText("Product page");
         characterNameText.setText(character.getName());
-        Picasso.get().load(product.getPicture()).into(picture);
+        Picasso.get().load(product.getPicture()).into(characterPictureImage);
         characterDescriptionText.setText(character.getDescription());
 
         // Gestion du clic sur le bouton "Acheter"

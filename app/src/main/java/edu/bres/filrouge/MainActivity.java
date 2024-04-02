@@ -35,9 +35,7 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        String url = "https://bresthomas.github.io/jsonHosting/produitPanier.json";
-        new HttpAsyncGet<>(url, ProduitPanier.class, this, new ProgressDialog(MainActivity.this) );
+        setContentView(R.layout.activity_main); // Assurez-vous d'inflater le bon layout
 
         final SeekBar seekBar = findViewById(R.id.seekBar);
         seekBar.setMax(10);
@@ -67,22 +65,14 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
                         }
                     });
         } else {
-                initGridView(); // Initialize GridView if products are already loaded
-            
-        
-        // Vérifier si l'intention spéciale pour afficher l'animation est présente
-        if (getIntent().hasExtra("showAnimation")) {
-            afficherLoadingAvecAnimation();
-        } else {
-            // Votre logique normale ici
-            setContentView(R.layout.activity_main);
-        } 
+            initGridView(); // Initialize GridView if products are already loaded
+        }
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 note = progress / 2f; // Progression de 0.5 en 0.5
-                displayNote.setText(String.format("%.1f/5", note));
+                displayNote.setText(String.format(Locale.getDefault(), "%.1f/5", note));
 
                 updateDisplayedProducts();
             }
@@ -109,8 +99,9 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
 
         // Réglez la progression initiale et affichez la note
         seekBar.setProgress((int) (note * 2)); // Convertissez la note en progression de la SeekBar
-        displayNote.setText(String.format("%.1f/5", note));
+        displayNote.setText(String.format(Locale.getDefault(), "%.1f/5", note));
     }
+
 
     private void initGridView() {
         GridView gridView = findViewById(R.id.meilleursProduits);
@@ -119,40 +110,6 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
         gridView.setAdapter(adapter);
 
         gridView.setOnItemClickListener((parent, view, position, id) -> onClicItemForLoading(position));
-    }
-
-    private void afficherLoadingAvecAnimation() {
-        setContentView(R.layout.activity_loading);
-
-        ImageView imageViewAnimation = findViewById(R.id.imageloadinganimation);
-        imageViewAnimation.setBackgroundResource(R.drawable.loading_animation);
-
-        // Obtenir l'AnimationDrawable à partir de l'ImageView
-        AnimationDrawable animationDrawable = (AnimationDrawable) imageViewAnimation.getBackground();
-
-        // Démarrer l'animation
-        animationDrawable.start();
-
-        // Créer un ObjectAnimator pour la rotation continue de l'ImageView
-        ObjectAnimator rotationAnimator = ObjectAnimator.ofFloat(
-                imageViewAnimation,
-                "rotation",
-                0f,
-                360f
-        );
-        rotationAnimator.setDuration(3000);
-        rotationAnimator.setRepeatCount(ObjectAnimator.INFINITE);
-        rotationAnimator.start();
-
-        // Revenir à MainActivity après 3 secondes
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        }, 3000);
     }
 
     @Override
