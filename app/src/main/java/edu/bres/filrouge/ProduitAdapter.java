@@ -13,6 +13,7 @@ import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class ProduitAdapter extends BaseAdapter {
 
@@ -50,11 +51,13 @@ public class ProduitAdapter extends BaseAdapter {
 
         //(2) : Récupération des éléments
         TextView name = layoutItem.findViewById(R.id.titreProduit);
-        TextView grade = layoutItem.findViewById(R.id.descriptionProduit);
+        TextView price = layoutItem.findViewById(R.id.produitPrice);
+        TextView grade = layoutItem.findViewById(R.id.value);
         ImageView picture = layoutItem.findViewById(R.id.imageProduit);
 
         //(3) : Mise à jour des valeurs
         name.setText(items.get(position).getName());
+        price.setText(String.format(Locale.getDefault(), "%.2f €", items.get(position).getPrice())); // Mettez à jour le TextView avec le prix
         grade.setText((new DecimalFormat("##.##")).format(items.get(position).getValue()));
         Picasso.get().load(items.get(position).getPicture()).into(picture);
 
@@ -64,4 +67,5 @@ public class ProduitAdapter extends BaseAdapter {
         //On retourne l'item créé.
         return layoutItem;
     }
+
 }

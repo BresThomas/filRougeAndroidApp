@@ -52,9 +52,10 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
                                 String name = document.getString("titre");
                                 String url_image = document.getString("url_image");
                                 String description = document.getString("description");
+                                float price = document.getLong("prix");
                                 float value = document.getLong("note");
-                                if (name != null && url_image != null && description != null) {
-                                    Produit produit = new Produit(name, description, url_image, value);
+                                if (name != null && url_image != null && description != null)  {
+                                    Produit produit = new Produit(name, description, url_image,value,price);
                                     produitInterfaces.add(produit);
                                     displayedProduit.add(produit); // Assuming all products are initially displayed
                                 }

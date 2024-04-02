@@ -27,12 +27,14 @@ public class ProduitActivity extends AppCompatActivity {
         TextView characterNameText = findViewById(R.id.produitName);
         ImageView characterPictureImage = findViewById(R.id.produitPicture);
         TextView characterDescriptionText = findViewById(R.id.produitDescription);
+        TextView productPrice = findViewById(R.id.produitPrice);
 
         // Affichage des informations du produit
         titleTextView.setText("Product page");
         characterNameText.setText(character.getName());
         Picasso.get().load(product.getPicture()).into(characterPictureImage);
         characterDescriptionText.setText(character.getDescription());
+        productPrice.setText(String.valueOf(character.getPrice()));
 
         // Gestion du clic sur le bouton "Acheter"
         Button acheterButton = findViewById(R.id.buttonAcheter);

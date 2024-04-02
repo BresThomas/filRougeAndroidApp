@@ -7,11 +7,11 @@ public class Produit implements ProduitInterface {
     private final String name;
     private float value;
     private String description;
-    private boolean isFavorite;
+    private float price;
     private String picture;
-    public Produit(String name, String description, String picture, float value) {
+    public Produit(String name, String description, String picture, float value, float price) {
         this.name = name;
-        this.isFavorite = false;
+        this.price = price;
         this.picture = picture;
         this.description = description;
         this.value = value;
@@ -21,12 +21,12 @@ public class Produit implements ProduitInterface {
         return description;
     }
     @Override
-    public void setFavorite(boolean favorite) {
-        isFavorite = favorite;
+    public void setPrice(float price) {
+        price = price;
     }
     @Override
-    public boolean isFavorite() {
-        return isFavorite;
+    public float getPrice() {
+        return price;
     }
     @Override
     public String getName() {
@@ -53,7 +53,7 @@ public class Produit implements ProduitInterface {
         name = in.readString();
         value = in.readFloat();
         description = in.readString();
-        isFavorite = in.readByte() != 0;
+        price = in.readFloat();
         picture = in.readString();
     }
     @Override
@@ -65,7 +65,7 @@ public class Produit implements ProduitInterface {
         dest.writeString(name);
         dest.writeFloat(value);
         dest.writeString(description);
-        dest.writeByte((byte) (isFavorite ? 1 : 0));
+        dest.writeFloat(price);
         dest.writeString(picture);
     }
     public static final Creator<Produit> CREATOR = new Creator<Produit>() {
