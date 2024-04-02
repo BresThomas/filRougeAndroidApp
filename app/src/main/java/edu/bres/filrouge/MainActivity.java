@@ -5,20 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.RotateAnimation;
-import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.Toast;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -37,34 +29,38 @@ public class MainActivity extends AppCompatActivity implements Clickable {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        //loadingAnimation = findViewById(R.id.loadingAnimation); // Initialize the loading animation ImageView
-
-        if (displayedProduit.isEmpty()) {
-            // Load products from Firebase Firestore
-            FirebaseFirestore db = FirebaseFirestore.getInstance();
-            db.collection("product")
-                    .get()
-                    .addOnCompleteListener(task -> {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                String name = document.getString("titre");
-                                String url = document.getString("url_image");
-                                String description = document.getString("description");
-                                if (name != null && url != null && description != null) {
-                                    Produit produit = new Produit(name, description, url);
-                                    produitInterfaces.add(produit);
-                                    displayedProduit.add(produit); // Assuming all products are initially displayed
-                                }
-                            }
-                            initGridView(); // Initialize GridView after loading products
-                        } else {
-                            Log.w(TAG, "Error getting documents.", task.getException());
-                        }
-                    });
+        // Vérifier si l'intention spéciale pour afficher l'animation est présente
+        if (getIntent().hasExtra("showAnimation")) {
+            afficherLoadingAvecAnimation();
         } else {
-            initGridView(); // Initialize GridView if products are already loaded
+            // Votre logique normale ici
+            setContentView(R.layout.activity_main);
+            if (displayedProduit.isEmpty()) {
+                // Load products from Firebase Firestore
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                db.collection("product")
+                        .get()
+                        .addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    String name = document.getString("titre");
+                                    String url = document.getString("url_image");
+                                    String description = document.getString("description");
+                                    if (name != null && url != null && description != null) {
+                                        Produit produit = new Produit(name, description, url);
+                                        produitInterfaces.add(produit);
+                                        displayedProduit.add(produit); // Assuming all products are initially displayed
+                                    }
+                                }
+                                initGridView(); // Initialize GridView after loading products
+                            } else {
+                                Log.w(TAG, "Error getting documents.", task.getException());
+                            }
+                        });
+            } else {
+                initGridView(); // Initialize GridView if products are already loaded
+            }
         }
     }
 
@@ -73,13 +69,15 @@ public class MainActivity extends AppCompatActivity implements Clickable {
 
         adapter = new ProduitAdapter(displayedProduit, this, this);
         gridView.setAdapter(adapter);
+
+        gridView.setOnItemClickListener((parent, view, position, id) -> onClicItemForLoading(position));
     }
 
-    void afficherLoadingAvecAnimation() {
+    private void afficherLoadingAvecAnimation() {
         setContentView(R.layout.activity_loading);
 
         ImageView imageViewAnimation = findViewById(R.id.imageloadinganimation);
-        imageViewAnimation.setBackgroundResource(R.drawable.frame_animation_list);
+        imageViewAnimation.setBackgroundResource(R.drawable.loading_animation);
 
         // Obtenir l'AnimationDrawable à partir de l'ImageView
         AnimationDrawable animationDrawable = (AnimationDrawable) imageViewAnimation.getBackground();
@@ -109,13 +107,19 @@ public class MainActivity extends AppCompatActivity implements Clickable {
         }, 3000);
     }
 
-
     @Override
     public void onClicItem(int index) {
         int itemIndex = findIndexInList(index);
         Log.d(TAG, "clicked on = " + produitInterfaces.get(itemIndex).getName());
         Intent intent = new Intent(this, ProduitActivity.class);
         intent.putExtra("character", produitInterfaces.get(itemIndex));
+        startActivity(intent);
+    }
+
+    private void onClicItemForLoading(int index) {
+        // Code pour afficher LoadingActivity
+        Intent intent = new Intent(this, LoadingActivity.class);
+        intent.putExtra("showAnimation", true); // Ajoutez cette ligne pour indiquer à LoadingActivity d'afficher l'animation
         startActivity(intent);
     }
 
