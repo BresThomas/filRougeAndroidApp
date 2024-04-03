@@ -9,7 +9,16 @@ import android.widget.Button;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+/**
+ * Activité pour afficher le panier de l'utilisateur
+ * Cette activité affiche les articles sélectionnés par l'utilisateur pour l'achat
+ * Elle implémente également la navigation en bas de l'écran
+ *
+ * @author [Bitoun, Bres, Wallner] - March 2024
+ */
 public class PanierActivity extends AppCompatActivity {
+
+    private final String TAG = "bres, bitoun, wallner " + getClass().getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +39,11 @@ public class PanierActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Gestionnaire d'événements pour la navigation inférieure.
+     * Cet écouteur est déclenché lorsqu'un élément de la barre de navigation inférieure est sélectionné.
+     * Il permet de naviguer entre les différentes activités de l'application.
+     */
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             item -> {
                 Intent intent = null;

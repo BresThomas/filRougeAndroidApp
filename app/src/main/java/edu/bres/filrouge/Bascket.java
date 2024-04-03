@@ -13,13 +13,19 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShoppingActivity extends AppCompatActivity {
+/**
+ * Activité pour afficher une liste de produits dans une GridView.
+ * Elle récupère les données à partir de Firebase Firestore.
+ *
+ * @author [Bitoun, Bres, Wallner] - March 2024
+ */
+public class Bascket extends AppCompatActivity {
 
-    private final String TAG = "ShoppingActivity";
+    private final String TAG = "bres, bitoun, wallner " + getClass().getSimpleName();
     private ProgressDialog progressDialog;
     private GridView gridView;
-    private ShoppingAdapter adapter;
-    private List<ProductShopping> itemList = new ArrayList<>();
+    private BascketAdapter adapter;
+    private List<ProductBascket> itemList = new ArrayList<>();
     private FirebaseFirestore db;
 
     @Override
@@ -43,6 +49,9 @@ public class ShoppingActivity extends AppCompatActivity {
         fetchItemsFromFirestore();
     }
 
+    /**
+     * Récupère les données des produits à partir de Firebase Firestore.
+     */
     private void fetchItemsFromFirestore() {
         db.collection("products")
                 .get()
@@ -50,7 +59,7 @@ public class ShoppingActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             // Convertir le document Firestore en objet ProductShopping
-                            ProductShopping product = document.toObject(ProductShopping.class);
+                            ProductBascket product = document.toObject(ProductBascket.class);
                             itemList.add(product);
                         }
                         // Mettre à jour l'adaptateur avec les données récupérées
@@ -61,12 +70,15 @@ public class ShoppingActivity extends AppCompatActivity {
                 });
     }
 
+    /**
+     * Met à jour l'adaptateur avec les données récupérées et l'attache à la GridView.
+     */
     private void updateAdapter() {
         // Masquer la boîte de dialogue de chargement
         progressDialog.dismiss();
 
         // Initialiser l'adaptateur et le définir sur la GridView
-        adapter = new ShoppingAdapter(itemList, this);
+        adapter = new BascketAdapter(itemList, this);
         gridView.setAdapter(adapter);
     }
 }

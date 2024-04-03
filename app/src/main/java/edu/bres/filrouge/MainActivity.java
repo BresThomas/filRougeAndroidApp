@@ -2,7 +2,6 @@ package edu.bres.filrouge;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -34,7 +33,7 @@ import java.util.List;
  * 
  */
 
-public class MainActivity extends AppCompatActivity implements PostExecuteActivity<ProductShopping>, Clickable {
+public class MainActivity extends AppCompatActivity implements PostExecuteActivity<ProductBascket>, Clickable {
     
     // Déclarations des variables de classe
     private final String TAG = "bres, bitoun, wallner " + getClass().getSimpleName();
@@ -231,7 +230,7 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
      * @param itemList La liste des produits du panier récupérés
      */
     @Override
-    public void onPostExecute(List<ProductShopping> itemList) {
+    public void onPostExecute(List<ProductBascket> itemList) {
 
         Log.d(TAG, itemList.toString());
 
@@ -239,8 +238,8 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
         //TextView description = findViewById(R.id.IDPANIER);
         //TextView prix = findViewById(R.id.IDPANIER);
 
-        for(ProductShopping productShopping : itemList) {
-            Log.d(TAG, productShopping.getName());
+        for(ProductBascket productBascket : itemList) {
+            Log.d(TAG, productBascket.getName());
             //titre.setText(productShopping.getName());
             //titre.setPrix(productShopping.getName());
             //titre.setDescription(productShopping.getName());

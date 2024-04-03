@@ -10,7 +10,7 @@ import java.util.Map;
  * @author [Bitoun, Bres, Wallner] - March 2024
  *
  */
-public class ProductShopping {
+public class ProductBascket {
     private final String TAG = "bres, bitoun, wallner " + getClass().getSimpleName();
     private int id;
     private boolean isFavorite;

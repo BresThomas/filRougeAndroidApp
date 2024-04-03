@@ -18,10 +18,10 @@ import java.util.List;
  *
  * @author [Bitoun, Bres, Wallner] - March 2024
  */
-public class ShoppingAdapter extends BaseAdapter {
+public class BascketAdapter extends BaseAdapter {
 
     private static final String TAG = "bres, bitoun, wallner ShoppingAdapter";
-    private final List<ProductShopping> items;
+    private final List<ProductBascket> items;
     private final LayoutInflater mInflater;
 
     /**
@@ -30,7 +30,7 @@ public class ShoppingAdapter extends BaseAdapter {
      * @param items   La liste des produits à afficher.
      * @param context Le contexte de l'application.
      */
-    public ShoppingAdapter(List<ProductShopping> items, Context context) {
+    public BascketAdapter(List<ProductBascket> items, Context context) {
         this.items = items;
         mInflater = LayoutInflater.from(context);
     }
@@ -59,7 +59,7 @@ public class ShoppingAdapter extends BaseAdapter {
             layoutItem = mInflater.inflate(R.layout.activity_settings, parent, false);
         }
 
-        ProductShopping currentItem = items.get(position);
+        ProductBascket currentItem = items.get(position);
 
         // Récupération des éléments
         TextView name = layoutItem.findViewById(R.id.itemName);
