@@ -217,10 +217,18 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
      */
     @Override
     public void onPostExecute(List<ProductShopping> itemList) {
+
         Log.d(TAG, itemList.toString());
+
+        TextView titre = findViewById(R.id.IDPANIER);
+        TextView description = findViewById(R.id.IDPANIER);
+        TextView prix = findViewById(R.id.IDPANIER);
 
         for(ProductShopping productShopping : itemList) {
             Log.d(TAG, productShopping.getName());
+            titre.setText(productShopping.getName());
+            titre.setPrix(productShopping.getName());
+            titre.setDescription(productShopping.getName());
         }
 
     }
