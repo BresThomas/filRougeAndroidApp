@@ -6,8 +6,11 @@ import java.util.Map;
  * La classe ProduitPanier représente un produit dans le panier de l'utilisateur.
  * Chaque produit possède un identifiant unique, un nom, une description, une valeur, et des images en basse et haute définition.
  * Le nom et la description peuvent dépendre de la langue sélectionnée dans les paramètres de l'application.
+ *
+ * @author [Bitoun, Bres, Wallner] - March 2024
+ *
  */
-public class ProductPanier {
+public class ProductShopping {
     private final String TAG = "bres, bitoun, wallner " + getClass().getSimpleName();
     private int id;
     private boolean isFavorite;

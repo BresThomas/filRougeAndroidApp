@@ -8,6 +8,8 @@ import android.content.Context;
  * Elle est utilisée pour obtenir le contexte de l'application à partir de n'importe quelle classe dans l'application.
  */
 public class VenteApp extends Application {
+
+    private final String TAG = "bres, bitoun, wallner " + getClass().getSimpleName();
     private static Context context;
 
     /**

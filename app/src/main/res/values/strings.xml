@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">filRouge</string>
-    <string name="titre">titre</string>
+    <string name="titre">Achat Petit Prix</string>
     <string name="note">Note :</string>
     <string name="boutonNote">Rechercher</string>
     <string name="titrePanier">Panier</string>

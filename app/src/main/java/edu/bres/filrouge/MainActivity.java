@@ -29,7 +29,7 @@ import java.util.List;
  * 
  */
 
-public class MainActivity extends AppCompatActivity implements PostExecuteActivity<ProductPanier>, Clickable {
+public class MainActivity extends AppCompatActivity implements PostExecuteActivity<ProductShopping>, Clickable {
     
     // Déclarations des variables de classe
     private final String TAG = "bres, bitoun, wallner " + getClass().getSimpleName();
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
 
         final SeekBar seekBar = findViewById(R.id.seekBar);
         seekBar.setMax(10);
-        displayRating = findViewById(R.id.noteRatting);
+        displayRating = findViewById(R.id.itemRatting);
 
         // Vérifie si la liste des produits affichés est vide
         if (displayedProduct.isEmpty()) {
@@ -191,11 +191,11 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
      * @param itemList La liste des produits du panier récupérés
      */
     @Override
-    public void onPostExecute(List<ProductPanier> itemList) {
+    public void onPostExecute(List<ProductShopping> itemList) {
         Log.d(TAG, itemList.toString());
 
-        for(ProductPanier productPanier : itemList) {
-            Log.d(TAG, productPanier.getName());
+        for(ProductShopping productShopping : itemList) {
+            Log.d(TAG, productShopping.getName());
         }
 
     }

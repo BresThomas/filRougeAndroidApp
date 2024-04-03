@@ -8,8 +8,13 @@ import androidx.annotation.NonNull;
  * Représente un produit avec ses caractéristiques telles que le nom, la description, le prix, la note et l'image.
  * Implémente l'interface ProduitInterface.
  * Cette classe est également Parcelable pour permettre le passage d'objets Produit entre les composants Android.
+ *
+ * @author [Bitoun, Bres, Wallner] - March 2024
+ *
  */
 public class Product implements ProductInterface {
+
+    private final String TAG = "bres, bitoun, wallner " + getClass().getSimpleName();
     private String name;
     private float rating;
     private String description;

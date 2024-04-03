@@ -22,6 +22,9 @@ import java.util.Locale;
  * 
  * @see ProductInterface
  * @see Clickable
+ *
+ * @author [Bitoun, Bres, Wallner] - March 2024
+ *
  */
 public class ProductAdapter extends BaseAdapter {
 
@@ -70,7 +73,7 @@ public class ProductAdapter extends BaseAdapter {
         // Récupération des éléments
         TextView name = layoutItem.findViewById(R.id.itemTitle);
         TextView price = layoutItem.findViewById(R.id.itemPrice);
-        TextView rating = layoutItem.findViewById(R.id.noteRatting);
+        TextView rating = layoutItem.findViewById(R.id.itemRatting);
         ImageView picture = layoutItem.findViewById(R.id.itemPicture);
 
         // Mise à jour des valeurs

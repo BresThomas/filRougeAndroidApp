@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/parametreTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Paramètres"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="24dp"/>
+
+    <!-- Premier Spinner -->
+    <Spinner
+        android:id="@+id/parametreSpinner1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:id="@+id/infoText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Informations sur le paramètre 1 sélectionné"
+        android:visibility="gone"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Deuxième Spinner -->
+    <Spinner
+        android:id="@+id/parametreSpinner2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:id="@+id/infoText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Informations sur le paramètre 2 sélectionné"
+        android:visibility="gone"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Troisième Spinner -->
+    <Spinner
+        android:id="@+id/parametreSpinner3"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"/>
+
+    <TextView
+        android:id="@+id/infoText3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Informations sur le paramètre 3 sélectionné"
+        android:visibility="gone"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"/>
+
+</LinearLayout>
