@@ -25,7 +25,7 @@ public class LoadingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_loading);
 
         // Récupération de l'ImageView pour l'animation
-        ImageView imageViewAnimation = findViewById(R.id.imageloadinganimation);
+        ImageView imageViewAnimation = findViewById(R.id.pictureloadinganimation);
 
         // Configuration de l'animation à partir du drawable
         imageViewAnimation.setBackgroundResource(R.drawable.loading_animation);

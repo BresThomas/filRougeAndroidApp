@@ -20,13 +20,13 @@ import java.util.Locale;
  * Il utilise Picasso pour charger les images des produits à partir de leur URL.
  * L'activité appelante doit implémenter l'interface Clickable pour gérer les clics sur les éléments de la liste.
  * 
- * @see ProduitInterface
+ * @see ProductInterface
  * @see Clickable
  */
-public class ProduitAdapter extends BaseAdapter {
+public class ProductAdapter extends BaseAdapter {
 
     private static final String TAG = "Bres, Bitoun, Wallner";
-    private final List<ProduitInterface> items;
+    private final List<ProductInterface> items;
     private final LayoutInflater mInflater;
     private Clickable callBackActivity;
 
@@ -37,7 +37,7 @@ public class ProduitAdapter extends BaseAdapter {
      * @param callBackActivity L'activité appelante qui implémente l'interface Clickable.
      * @param context Le contexte de l'application.
      */
-    public ProduitAdapter(List<ProduitInterface> items, Clickable callBackActivity, Context context) {
+    public ProductAdapter(List<ProductInterface> items, Clickable callBackActivity, Context context) {
         this.items = items;
         this.callBackActivity = callBackActivity;
         mInflater = LayoutInflater.from(context);
@@ -59,27 +59,27 @@ public class ProduitAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View view, ViewGroup parent) {
         View layoutItem;
 
-        //(1) : Réutilisation des layouts (lorsque c'est possible)
-        layoutItem = (convertView == null
+        // Réutilisation des layouts 
+        layoutItem = (view == null
                 ? mInflater.inflate(R.layout.list_item_produit, parent, false)
-                : convertView);
+                : view);
 
-        //(2) : Récupération des éléments
-        TextView name = layoutItem.findViewById(R.id.titreProduit);
-        TextView price = layoutItem.findViewById(R.id.produitPrice);
-        TextView grade = layoutItem.findViewById(R.id.value);
-        ImageView picture = layoutItem.findViewById(R.id.imageProduit);
+        // Récupération des éléments
+        TextView name = layoutItem.findViewById(R.id.itemTitle);
+        TextView price = layoutItem.findViewById(R.id.itemPrice);
+        TextView rating = layoutItem.findViewById(R.id.noteRatting);
+        ImageView picture = layoutItem.findViewById(R.id.itemPicture);
 
-        //(3) : Mise à jour des valeurs
+        // Mise à jour des valeurs
         name.setText(items.get(position).getName());
-        price.setText(String.format(Locale.getDefault(), "%.2f €", items.get(position).getPrice())); // Mettez à jour le TextView avec le prix
-        grade.setText((new DecimalFormat("##.##")).format(items.get(position).getValue()));
+        price.setText(String.format(Locale.getDefault(), "%.2f €", items.get(position).getPrice()));
+        rating.setText((new DecimalFormat("##.##")).format(items.get(position).getRating()));
         Picasso.get().load(items.get(position).getPicture()).into(picture);
 
-        //(4) écouteur sur chaque élément de l'adapter
+        // écouteur sur chaque élément de l'adapter
         layoutItem.setOnClickListener(click -> callBackActivity.onClicItem(position));
 
         //On retourne l'item créé.

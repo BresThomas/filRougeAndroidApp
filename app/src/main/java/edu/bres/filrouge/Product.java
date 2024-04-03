@@ -5,13 +5,13 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 
 /**
- * Représente un produit avec ses caractéristiques telles que le nom, la description, le prix, la valeur et l'image.
+ * Représente un produit avec ses caractéristiques telles que le nom, la description, le prix, la note et l'image.
  * Implémente l'interface ProduitInterface.
  * Cette classe est également Parcelable pour permettre le passage d'objets Produit entre les composants Android.
  */
-public class Produit implements ProduitInterface {
-    private final String name;
-    private float value;
+public class Product implements ProductInterface {
+    private String name;
+    private float rating;
     private String description;
     private float price;
     private String picture;
@@ -21,15 +21,15 @@ public class Produit implements ProduitInterface {
      * @param name Le nom du produit.
      * @param description La description du produit.
      * @param picture L'URL de l'image du produit.
-     * @param value La valeur du produit.
+     * @param rating La note du produit.
      * @param price Le prix du produit.
      */
-    public Produit(String name, String description, String picture, float value, float price) {
+    public Product(String name, String description, String picture, float rating, float price) {
         this.name = name;
         this.price = price;
         this.picture = picture;
         this.description = description;
-        this.value = value;
+        this.rating = rating;
     }
 
     /**
@@ -78,12 +78,12 @@ public class Produit implements ProduitInterface {
     }
 
     /**
-     * Renvoie la valeur du produit.
-     * @return La valeur du produit.
+     * Renvoie la note du produit.
+     * @return La note du produit.
      */
     @Override
-    public float getValue() {
-        return value;
+    public float getRating() {
+        return rating;
     }
 
     /**
@@ -96,12 +96,12 @@ public class Produit implements ProduitInterface {
     }
 
     /**
-     * Définit la valeur du produit.
-     * @param value La valeur du produit.
+     * Définit la note du produit.
+     * @param rating La note du produit.
      */
     @Override
-    public void setValue(float value) {
-        this.value = value;
+    public void setRating(float rating) {
+        this.rating = rating;
     }
 
     // Parcelable implementation
@@ -110,16 +110,16 @@ public class Produit implements ProduitInterface {
      * Constructeur utilisé pour la désérialisation d'un objet Produit depuis un Parcel.
      * @param in Le Parcel contenant les données sérialisées de l'objet Produit.
      */
-    public Produit(Parcel in) {
+    public Product(Parcel in) {
         name = in.readString();
-        value = in.readFloat();
+        rating = in.readFloat();
         description = in.readString();
         price = in.readFloat();
         picture = in.readString();
     }
 
     /**
-     * DescribeContents() n'est pas utilisé dans ce cas, donc la valeur renvoyée est 0.
+     * DescribeContents() n'est pas utilisé dans ce cas, donc la note renvoyée est 0.
      * @return 0.
      */
     @Override
@@ -135,7 +135,7 @@ public class Produit implements ProduitInterface {
     @Override
     public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeString(name);
-        dest.writeFloat(value);
+        dest.writeFloat(rating);
         dest.writeString(description);
         dest.writeFloat(price);
         dest.writeString(picture);
@@ -144,14 +144,14 @@ public class Produit implements ProduitInterface {
     /**
      * Créateur de l'objet Produit à partir d'un Parcel.
      */
-    public static final Creator<Produit> CREATOR = new Creator<Produit>() {
+    public static final Creator<Product> CREATOR = new Creator<Product>() {
         @Override
-        public Produit createFromParcel(Parcel in) {
-            return new Produit(in);
+        public Product createFromParcel(Parcel in) {
+            return new Product(in);
         }
         @Override
-        public Produit[] newArray(int size) {
-            return new Produit[size];
+        public Product[] newArray(int size) {
+            return new Product[size];
         }
     };
 
@@ -159,7 +159,7 @@ public class Produit implements ProduitInterface {
      * Renvoie le créateur Parcelable pour la classe Produit.
      * @return Le créateur Parcelable pour la classe Produit.
      */
-    public static Parcelable.Creator<Produit> getCreator() {
+    public static Parcelable.Creator<Product> getCreator() {
         return CREATOR;
     }
 }

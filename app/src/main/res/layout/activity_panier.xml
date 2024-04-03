@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PanierActivity">
+    tools:context=".ShoppingActivity">
 
     <TextView
-        android:id="@+id/titrePanier"
+        android:id="@+id/shoppingtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/titrePanier"
@@ -20,7 +20,7 @@
     <GridView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/titrePanier"
+        app:layout_constraintTop_toBottomOf="@+id/shoppingtitle"
         app:layout_constraintLeft_toLeftOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

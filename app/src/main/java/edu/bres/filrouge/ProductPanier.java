@@ -1,7 +1,5 @@
 package edu.bres.filrouge;
 
-import android.util.Log;
-
 import java.util.Map;
 
 /**
@@ -9,15 +7,16 @@ import java.util.Map;
  * Chaque produit possède un identifiant unique, un nom, une description, une valeur, et des images en basse et haute définition.
  * Le nom et la description peuvent dépendre de la langue sélectionnée dans les paramètres de l'application.
  */
-public class ProduitPanier {
+public class ProductPanier {
     private final String TAG = "bres, bitoun, wallner " + getClass().getSimpleName();
     private int id;
     private boolean isFavorite;
     private Map<String, String> name; // Dépend de la langue des paramètres
     private Map<String, String>  description;  // Dépend de la langue des paramètres
-    private float value;
-    private String pictureLowDefinition;
-    private String pictureHighDefinition;
+    private float rating;
+    private String pictureLowQuality;
+    private String pictureHighQuality;
+
 
     public int getId() {
         return id;
@@ -50,31 +49,31 @@ public class ProduitPanier {
         this.description = description;
     }
 
-    public float getValue() {
-        return value;
+    public float getRating() {
+        return rating;
     }
-    public void setValue(float value) {
-        this.value = value;
+    public void setRating(float rating) {
+        this.rating = rating;
     }
 
-    public String getPictureLowDefinition() {
-        return pictureLowDefinition;
+    public String getPictureLowQuality() {
+        return pictureLowQuality;
     }
-    public void setPictureLowDefinition(String pictureLowDefinition) {
-        this.pictureLowDefinition = "http://edu.info06.net/onepiece"
+    public void setPictureLowQuality(String pictureLowQuality) {
+        this.pictureLowQuality = "http://edu.info06.net/onepiece"
                 + "/pictures_ld/"
-                + pictureLowDefinition;
+                + pictureLowQuality;
     }
 
-    public String getPictureHighDefinition() {
-        return pictureHighDefinition;
+    public String getPictureHighQuality() {
+        return pictureHighQuality;
     }
-    public void setPictureHighDefinition(String pictureHighDefinition) {
-        this.pictureHighDefinition = pictureHighDefinition;
+    public void setPictureHighQuality(String pictureHighQuality) {
+        this.pictureHighQuality = pictureHighQuality;
     }
 
     @Override
     public String toString(){
-        return getName() + "(" +  getValue() +  ")";
+        return getName() + "(" +  getRating() +  ")";
     }
 }

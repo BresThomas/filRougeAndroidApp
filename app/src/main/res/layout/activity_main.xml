@@ -8,7 +8,7 @@
     tools:ignore="DuplicateIds">
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/productTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/titre"
@@ -26,7 +26,7 @@
         android:layout_marginHorizontal="10dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintTop_toBottomOf="@id/productTitle"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">
 
@@ -46,7 +46,7 @@
             android:layout_marginTop="5dp" />
 
         <TextView
-            android:id="@+id/value"
+            android:id="@+id/noteRatting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
@@ -57,7 +57,7 @@
     </LinearLayout>
 
     <GridView
-        android:id="@+id/meilleursProduits"
+        android:id="@+id/gridviewproduct"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="30dp"

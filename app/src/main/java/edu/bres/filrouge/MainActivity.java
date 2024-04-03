@@ -2,21 +2,15 @@ package edu.bres.filrouge;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
-import android.app.ProgressDialog;
 
 import java.util.Locale;
 import android.widget.GridView;
-import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -35,15 +29,15 @@ import java.util.List;
  * 
  */
 
-public class MainActivity extends AppCompatActivity implements PostExecuteActivity<ProduitPanier>, Clickable {
+public class MainActivity extends AppCompatActivity implements PostExecuteActivity<ProductPanier>, Clickable {
     
     // Déclarations des variables de classe
     private final String TAG = "bres, bitoun, wallner " + getClass().getSimpleName();
-    private ProduitAdapter adapter;
-    private float note = 0;
-    private TextView displayNote;
-    private final List<ProduitInterface> produitInterfaces = new ArrayList<>(); //complete list
-    private final List<ProduitInterface> displayedProduit = new ArrayList<>(); //displayed list
+    private ProductAdapter adapter;
+    private float rating = 0;
+    private TextView displayRating;
+    private final List<ProductInterface> productInterfaces = new ArrayList<>(); //complete list
+    private final List<ProductInterface> displayedProduct = new ArrayList<>(); //displayed list
 
     /**
      * Méthode appelée lors de la création de l'activité.
@@ -52,14 +46,14 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main); // Assurez-vous d'inflater le bon layout
+        setContentView(R.layout.activity_main);
 
         final SeekBar seekBar = findViewById(R.id.seekBar);
         seekBar.setMax(10);
-        displayNote = findViewById(R.id.value);
+        displayRating = findViewById(R.id.noteRatting);
 
         // Vérifie si la liste des produits affichés est vide
-        if (displayedProduit.isEmpty()) {
+        if (displayedProduct.isEmpty()) {
             // Charge les produits depuis Firebase Firestore
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             db.collection("product")
@@ -73,9 +67,9 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
                                 float price = document.getLong("prix");
                                 float value = document.getLong("note");
                                 if (name != null && url_image != null && description != null)  {
-                                    Produit produit = new Produit(name, description, url_image,value,price);
-                                    produitInterfaces.add(produit);
-                                    displayedProduit.add(produit); // Assuming all products are initially displayed
+                                    Product product = new Product(name, description, url_image,value,price);
+                                    productInterfaces.add(product);
+                                    displayedProduct.add(product);
                                 }
                             }
                             initGridView(); // Initialise la GridView après le chargement des produits
@@ -91,19 +85,19 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                note = progress / 2f; // Progression de 0.5 en 0.5
-                displayNote.setText(String.format(Locale.getDefault(), "%.1f/5", note));
+                rating = progress / 2f; // Progression de 0.5 en 0.5
+                displayRating.setText(String.format(Locale.getDefault(), "%.1f/5", rating));
 
                 updateDisplayedProducts();
             }
 
             private void updateDisplayedProducts() {
-                displayedProduit.clear(); // Efface la liste des produits affichés
+                displayedProduct.clear(); // Efface la liste des produits affichés
 
                 // Filtre les produits en fonction de la note actuelle
-                for (ProduitInterface produit : produitInterfaces) {
-                    if (produit.getValue() >= note) {
-                        displayedProduit.add(produit);
+                for (ProductInterface product : productInterfaces) {
+                    if (product.getRating() >= rating) {
+                        displayedProduct.add(product);
                     }
                 }
 
@@ -118,8 +112,8 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
         });
 
         // Réglez la progression initiale et affichez la note
-        seekBar.setProgress((int) (note * 2)); // Convertissez la note en progression de la SeekBar
-        displayNote.setText(String.format(Locale.getDefault(), "%.1f/5", note));
+        seekBar.setProgress((int) (rating * 2)); // Convertissez la note en progression de la SeekBar
+        displayRating.setText(String.format(Locale.getDefault(), "%.1f/5", rating));
     }
 
 
@@ -128,9 +122,9 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
      * définit un écouteur d'événement pour les clics sur les éléments.
      */
     private void initGridView() {
-        GridView gridView = findViewById(R.id.meilleursProduits);
+        GridView gridView = findViewById(R.id.gridviewproduct);
 
-        adapter = new ProduitAdapter(displayedProduit, this, this);
+        adapter = new ProductAdapter(displayedProduct, this, this);
         gridView.setAdapter(adapter);
 
         gridView.setOnItemClickListener((parent, view, position, id) -> onClicItemForLoading(position));
@@ -144,9 +138,9 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
     @Override
     public void onClicItem(int index) {
         int itemIndex = findIndexInList(index);
-        Log.d(TAG, "clicked on = " + produitInterfaces.get(itemIndex).getName());
-        Intent intent = new Intent(this, ProduitActivity.class);
-        intent.putExtra("character", produitInterfaces.get(itemIndex));
+        Log.d(TAG, "clicked on = " + productInterfaces.get(itemIndex).getName());
+        Intent intent = new Intent(this, ProductActivity.class);
+        intent.putExtra("character", productInterfaces.get(itemIndex));
         startActivity(intent);
     }
 
@@ -168,9 +162,9 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
      * @return L'index du produit dans la liste complète, ou -1 s'il n'est pas trouvé
      */
     private int findIndexInList(int index) {
-        ProduitInterface itemToFind = displayedProduit.get(index);
-        for (int i = 0; i < produitInterfaces.size(); i++) {
-            if (produitInterfaces.get(i).equals(itemToFind)) {
+        ProductInterface itemToFind = displayedProduct.get(index);
+        for (int i = 0; i < productInterfaces.size(); i++) {
+            if (productInterfaces.get(i).equals(itemToFind)) {
                 return i;
             }
         }
@@ -182,12 +176,12 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
      * Met à jour la note du produit dans les listes produitInterfaces et displayedProduit,
      * puis notifie l'adapter pour refléter la modification.
      * @param itemIndex L'index du produit dans la liste
-     * @param value La nouvelle valeur de la note du produit
+     * @param rating La nouvelle valeur de la note du produit
      */
     @Override
-    public void onRatingBarChange(int itemIndex, float value) {
-        produitInterfaces.get(findIndexInList(itemIndex)).setValue(value);
-        displayedProduit.get(itemIndex).setValue(value);
+    public void onRatingBarChange(int itemIndex, float rating) {
+        productInterfaces.get(findIndexInList(itemIndex)).setRating(rating);
+        displayedProduct.get(itemIndex).setRating(rating);
         adapter.notifyDataSetChanged();
     }
 
@@ -197,11 +191,11 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
      * @param itemList La liste des produits du panier récupérés
      */
     @Override
-    public void onPostExecute(List<ProduitPanier> itemList) {
+    public void onPostExecute(List<ProductPanier> itemList) {
         Log.d(TAG, itemList.toString());
 
-        for(ProduitPanier produit : itemList) {
-            Log.d(TAG, produit.getName());
+        for(ProductPanier productPanier : itemList) {
+            Log.d(TAG, productPanier.getName());
         }
 
     }

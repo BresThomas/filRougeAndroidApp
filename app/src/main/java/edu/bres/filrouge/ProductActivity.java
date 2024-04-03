@@ -14,7 +14,7 @@ import com.squareup.picasso.Picasso;
  * Cette activité reçoit un objet Produit en tant qu'intention, puis affiche ses détails tels que le nom, l'image, la description et le prix.
  * Les utilisateurs peuvent également acheter le produit en appuyant sur un bouton.
  */
-public class ProduitActivity extends AppCompatActivity {
+public class ProductActivity extends AppCompatActivity {
 
     /**
      * Méthode appelée lors de la création de l'activité.
@@ -27,29 +27,29 @@ public class ProduitActivity extends AppCompatActivity {
         setContentView(R.layout.activity_product);
 
         // Récupération de l'objet Produit de l'intention
-        Produit product = getIntent().getParcelableExtra("character");
+        Product product = getIntent().getParcelableExtra("character");
 
         // Initialisation des éléments de l'interface utilisateur
-        TextView titleTextView = findViewById(R.id.title);
-        TextView characterNameText = findViewById(R.id.produitName);
-        ImageView characterPictureImage = findViewById(R.id.produitPicture);
-        TextView characterDescriptionText = findViewById(R.id.produitDescription);
-        TextView productPrice = findViewById(R.id.produitPrice);
+        TextView productTitle = findViewById(R.id.productTitle);
+        TextView productName = findViewById(R.id.productName);
+        ImageView productPicture = findViewById(R.id.productPicture);
+        TextView productDescription = findViewById(R.id.productDescription);
+        TextView productPrice = findViewById(R.id.itemPrice);
 
         // Affichage des informations du produit
-        titleTextView.setText("Product page");
-        characterNameText.setText(product.getName());
-        Picasso.get().load(product.getPicture()).into(characterPictureImage);
-        characterDescriptionText.setText(product.getDescription());
+        productTitle.setText("Product page");
+        productName.setText(product.getName());
+        Picasso.get().load(product.getPicture()).into(productPicture);
+        productDescription.setText(product.getDescription());
         productPrice.setText(String.valueOf(product.getPrice()));
 
         // Gestion du clic sur le bouton "Acheter"
-        Button acheterButton = findViewById(R.id.buttonAcheter);
+        Button acheterButton = findViewById(R.id.productButtonBuy);
         acheterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Démarrer l'activité d'animation
-                startActivity(new Intent(ProduitActivity.this, LoadingActivity.class));
+                startActivity(new Intent(ProductActivity.this, LoadingActivity.class));
             }
         });
     }

@@ -7,7 +7,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/productTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Détails du Produit"
@@ -20,74 +20,74 @@
         android:layout_marginBottom="16dp" />
 
     <ImageView
-        android:id="@+id/produitPicture"
+        android:id="@+id/productPicture"
         android:layout_width="0dp"
         android:layout_height="300dp"
         android:layout_marginTop="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintTop_toBottomOf="@id/productTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:scaleType="centerCrop"
         android:adjustViewBounds="true" />
 
     <TextView
-        android:id="@+id/produitName"
+        android:id="@+id/productName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Nom du Produit"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/produitPicture"
-        app:layout_constraintStart_toStartOf="@id/produitPicture"
-        app:layout_constraintEnd_toEndOf="@id/produitPicture"
+        app:layout_constraintTop_toBottomOf="@id/productPicture"
+        app:layout_constraintStart_toStartOf="@id/productPicture"
+        app:layout_constraintEnd_toEndOf="@id/productPicture"
         android:layout_marginTop="16dp" />
 
     <TextView
-        android:id="@+id/produitPrice"
+        android:id="@+id/itemPrice"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Prix: 0.00 €"
         android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@id/produitName"
-        app:layout_constraintStart_toStartOf="@id/produitName"
-        app:layout_constraintEnd_toEndOf="@id/produitName"
+        app:layout_constraintTop_toBottomOf="@id/productName"
+        app:layout_constraintStart_toStartOf="@id/productName"
+        app:layout_constraintEnd_toEndOf="@id/productName"
         android:layout_marginTop="8dp" />
 
     <RatingBar
-        android:id="@+id/ratingBar"
+        android:id="@+id/productRatingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:numStars="5"
         android:rating="0"
         android:stepSize="0.5"
-        app:layout_constraintTop_toBottomOf="@id/produitPrice"
-        app:layout_constraintStart_toStartOf="@id/produitPrice"
-        app:layout_constraintEnd_toEndOf="@id/produitPrice" />
+        app:layout_constraintTop_toBottomOf="@id/itemPrice"
+        app:layout_constraintStart_toStartOf="@id/itemPrice"
+        app:layout_constraintEnd_toEndOf="@id/itemPrice" />
 
     <TextView
-        android:id="@+id/produitDescription"
+        android:id="@+id/productDescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Description du Produit"
         android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@id/ratingBar"
-        app:layout_constraintStart_toStartOf="@id/ratingBar"
-        app:layout_constraintEnd_toEndOf="@id/ratingBar"
+        app:layout_constraintTop_toBottomOf="@id/productRatingBar"
+        app:layout_constraintStart_toStartOf="@id/productRatingBar"
+        app:layout_constraintEnd_toEndOf="@id/productRatingBar"
         android:layout_marginTop="16dp" />
 
     <Button
-        android:id="@+id/buttonAcheter"
+        android:id="@+id/productButtonBuy"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Ajouter au Panier"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/produitDescription"
-        app:layout_constraintStart_toStartOf="@id/produitDescription"
-        app:layout_constraintEnd_toEndOf="@id/produitDescription"
+        app:layout_constraintTop_toBottomOf="@id/productDescription"
+        app:layout_constraintStart_toStartOf="@id/productDescription"
+        app:layout_constraintEnd_toEndOf="@id/productDescription"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp" />
 
