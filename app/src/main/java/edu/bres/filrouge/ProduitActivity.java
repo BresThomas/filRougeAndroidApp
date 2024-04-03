@@ -7,6 +7,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -53,4 +55,24 @@ public class ProduitActivity extends AppCompatActivity {
             }
         });
     }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+            item -> {
+                Intent intent = null;
+                int id = item.getItemId();
+                if (id == R.id.home) {
+                    // Vous pouvez laisser cette partie vide si vous voulez rester dans MainActivity
+                    // Ou vous pouvez démarrer MainActivity à nouveau si nécessaire
+                    intent = new Intent(ProduitActivity.this, MainActivity.class);
+                } else if (id == R.id.panier) {
+                    // Remplacez PanierActivity.class par le nom de votre activité pour le panier
+
+                    intent = new Intent(ProduitActivity.this, PanierActivity.class);
+                }
+                if (intent != null) {
+                    startActivity(intent);
+                    return true;
+                }
+                return false;
+            };
 }

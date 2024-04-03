@@ -200,9 +200,10 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
                 if (id == R.id.home) {
                     // Vous pouvez laisser cette partie vide si vous voulez rester dans MainActivity
                     // Ou vous pouvez démarrer MainActivity à nouveau si nécessaire
-                    // intent = new Intent(MainActivity.this, MainActivity.class);
+                    intent = new Intent(MainActivity.this, MainActivity.class);
                 } else if (id == R.id.panier) {
                     // Remplacez PanierActivity.class par le nom de votre activité pour le panier
+
                     intent = new Intent(MainActivity.this, PanierActivity.class);
                 }
                 if (intent != null) {
