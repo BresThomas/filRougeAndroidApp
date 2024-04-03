@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.app.ProgressDialog;
 
@@ -18,6 +19,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -190,6 +192,27 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
         displayedProduit.get(itemIndex).setValue(value);
         adapter.notifyDataSetChanged();
     }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+            item -> {
+                Intent intent = null;
+                int id = item.getItemId();
+                if (id == R.id.home) {
+                    // Vous pouvez laisser cette partie vide si vous voulez rester dans MainActivity
+                    // Ou vous pouvez démarrer MainActivity à nouveau si nécessaire
+                    // intent = new Intent(MainActivity.this, MainActivity.class);
+                } else if (id == R.id.panier) {
+                    // Remplacez PanierActivity.class par le nom de votre activité pour le panier
+                    intent = new Intent(MainActivity.this, PanierActivity.class);
+                }
+                if (intent != null) {
+                    startActivity(intent);
+                    return true;
+                }
+                return false;
+                };
+
+
 
     /**
      * Appelée lorsque la tâche asynchrone de récupération des produits du panier est terminée.

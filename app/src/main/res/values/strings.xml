@@ -5,4 +5,6 @@
     <string name="boutonNote">Rechercher</string>
     <string name="titrePanier">Panier</string>
     <string name="LANGUAGE">french</string>
+    <string name="commandez">Passez votre commande !</string>
+    <string name="vosProduits">Vos produits :</string>
 </resources>
