@@ -25,7 +25,7 @@ import java.util.List;
  * L'utilisateur peut cliquer sur un produit pour afficher ses détails dans une autre activité.
  * Cette activité implémente les interfaces Clickable et PostExecuteActivity.
  * 
- * @author [Bitoun, Bre, Wallner] - March 2024
+ * @author [Bitoun, Bres, Wallner] - March 2024
  * 
  */
 
@@ -64,8 +64,8 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
                                 String name = document.getString("titre");
                                 String url_image = document.getString("url_image");
                                 String description = document.getString("description");
-                                float price = document.getLong("prix");
-                                float value = document.getLong("note");
+                                Float price = document.getDouble("prix") != null ? document.getDouble("prix").floatValue() : 0.0f;
+                                Float value = document.getDouble("note") != null ? document.getDouble("note").floatValue() : 0.0f;
                                 if (name != null && url_image != null && description != null)  {
                                     Product product = new Product(name, description, url_image,value,price);
                                     productInterfaces.add(product);

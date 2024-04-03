@@ -24,7 +24,7 @@ import java.util.concurrent.Executors;
  * 
  * @param <T> Le type d'objet à construire à partir des données JSON.
  * 
- * @author [Bitoun, Bre, Wallner] - March 2024
+ * @author [Bitoun, Bres, Wallner] - March 2024
  */
 public class HttpAsyncGet<T>{
     private static final String TAG = "Bres, Bitoun, Wallner " + HttpAsyncGet.class.getSimpleName();    // Pour affichage en cas d'erreur

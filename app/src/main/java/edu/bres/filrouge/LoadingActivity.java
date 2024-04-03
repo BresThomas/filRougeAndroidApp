@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
  * 
  * <p>La classe LoadingActivity est une activité qui affiche une animation de chargement
  * 
- * @author [Bitoun, Bre, Wallner] - March 2024
+ * @author [Bitoun, Bres, Wallner] - March 2024
  */
 public class LoadingActivity extends AppCompatActivity {
 
