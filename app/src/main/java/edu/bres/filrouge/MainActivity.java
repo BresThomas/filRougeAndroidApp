@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.annotation.NonNull;
 import android.util.Log;
 
 import java.util.Locale;
@@ -157,7 +155,7 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
      */
     private void onClicItemForLoading(int index) {
         // Code pour afficher LoadingActivity
-        Intent intent = new Intent(this, LoadingActivity.class);
+        Intent intent = new Intent(this, LoadingBasketActivity.class);
         intent.putExtra("showAnimation", true); // Ajoutez cette ligne pour indiquer à LoadingActivity d'afficher l'animation
         startActivity(intent);
     }
@@ -198,7 +196,6 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
                 if (id == R.id.home) {
                     // Vous pouvez laisser cette partie vide si vous voulez rester dans MainActivity
                     // Ou vous pouvez démarrer MainActivity à nouveau si nécessaire
-                    intent = new Intent(MainActivity.this, MainActivity.class);
                 } else if (id == R.id.panier) {
                     // Remplacez PanierActivity.class par le nom de votre activité pour le panier
 

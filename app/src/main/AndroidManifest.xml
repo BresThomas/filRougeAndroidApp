@@ -31,8 +31,9 @@
         </activity>
 
         <activity android:name=".ProductActivity" />
-        <activity android:name=".LoadingActivity"/>
-
+        <activity android:name=".LoadingBasketActivity"/>
+        <activity android:name=".PanierActivity"/>
+        <activity android:name=".LoadingBuyActivity"/>
 
     </application>
 </manifest>

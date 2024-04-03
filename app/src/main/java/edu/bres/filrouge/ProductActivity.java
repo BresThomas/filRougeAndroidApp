@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -46,12 +48,12 @@ public class ProductActivity extends AppCompatActivity {
         TextView productName = findViewById(R.id.productName);
         ImageView productPicture = findViewById(R.id.productPicture);
         TextView productDescription = findViewById(R.id.productDescription);
-        TextView productPrice = findViewById(R.id.itemPrice);
-        Button productBuyButton = findViewById(R.id.productButtonBuy);
+        TextView productPrice = findViewById(R.id.productPrice);
+        Button productBuyButton = findViewById(R.id.productButtonAddBasket);
         RatingBar productRatingBar = findViewById(R.id.productRatingBar);
 
         // Affichage des informations du produit
-        productTitle.setText("Product page");
+        productTitle.setText("Détailles du produit");
         productName.setText(product.getName());
         Picasso.get().load(product.getPicture()).into(productPicture);
         productDescription.setText(product.getDescription());
@@ -64,8 +66,8 @@ public class ProductActivity extends AppCompatActivity {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
                 // Calcul de la nouvelle note globale
-                float newRating = (baseRating + rating) / 2; // Moyenne de la note de base et de la nouvelle note
-                product.setRating(newRating); // Met à jour la note globale dans l'objet Produit
+                float newRating = (baseRating + rating) / 2;
+                product.setRating(newRating);
             }
         });
 
@@ -75,13 +77,32 @@ public class ProductActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Démarrer l'activité d'animation
-                startActivity(new Intent(ProductActivity.this, LoadingActivity.class));
+                startActivity(new Intent(ProductActivity.this, LoadingBasketActivity.class));
             }
         });
 
         // Animation pour tous les éléments de la vue XML
         animateViews(productTitle, productName, productPicture,productRatingBar, productDescription, productPrice, productBuyButton);
     }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+            item -> {
+                Intent intent = null;
+                int id = item.getItemId();
+                if (id == R.id.home) {
+                    // Vous pouvez laisser cette partie vide si vous voulez rester dans MainActivity
+                    // Ou vous pouvez démarrer MainActivity à nouveau si nécessaire
+                    intent = new Intent(ProductActivity.this, MainActivity.class);
+                } else if (id == R.id.panier) {
+                    // Remplacez PanierActivity.class par le nom de votre activité pour le panier
+                    intent = new Intent(ProductActivity.this, PanierActivity.class);
+                }
+                if (intent != null) {
+                    startActivity(intent);
+                    return true;
+                }
+                return false;
+            };
 
     private void animateViews(View... views) {
         for (View view : views) {
@@ -91,4 +112,6 @@ public class ProductActivity extends AppCompatActivity {
             animator.start();
         }
     }
+
+
 }

@@ -24,7 +24,7 @@
 
 
     <TextView
-        android:id="@+id/itemPrice"
+        android:id="@+id/productPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
@@ -40,7 +40,6 @@
             android:id="@+id/itemRatting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
             android:textColor="@color/cardview_dark_background"
             android:text="TextView " />
 
@@ -48,23 +47,8 @@
             android:id="@+id/noteRatting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
             android:textColor="@color/cardview_dark_background"
             android:text="/5" />
     </LinearLayout>
-
-    <Button
-        android:id="@+id/itemShoppingButton"
-        android:layout_width="150dp"
-        android:layout_height="40dp"
-        android:text="Ajouter au panier"
-        android:layout_marginBottom="22dp"
-        android:layout_marginTop="10dp"
-        android:textColor="@android:color/white"
-        android:textSize="13sp"
-        android:paddingVertical="7dp"
-        android:paddingHorizontal="24dp"
-        android:elevation="4dp"
-        />
 
 </LinearLayout>

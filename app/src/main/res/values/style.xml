@@ -10,8 +10,5 @@
     <style name="WhiteButton" parent="Widget.AppCompat.Button">
         <item name="android:background">@android:color/white</item>
     </style>
-
-
-
-    <color name="mainTitleBackground">#F0F5F0</color>
+    <color name="mainTitleBackground">#5C94DA</color>
 </resources>

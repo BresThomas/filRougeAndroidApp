@@ -45,7 +45,7 @@
         android:layout_marginTop="16dp" />
 
     <TextView
-        android:id="@+id/itemPrice"
+        android:id="@+id/productPrice"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Prix: 0.00 €"
@@ -63,9 +63,9 @@
         android:numStars="5"
         android:rating="0"
         android:stepSize="0.5"
-        app:layout_constraintTop_toBottomOf="@id/itemPrice"
-        app:layout_constraintStart_toStartOf="@id/itemPrice"
-        app:layout_constraintEnd_toEndOf="@id/itemPrice" />
+        app:layout_constraintTop_toBottomOf="@id/productPrice"
+        app:layout_constraintStart_toStartOf="@id/productPrice"
+        app:layout_constraintEnd_toEndOf="@id/productPrice" />
 
     <TextView
         android:id="@+id/productDescription"
@@ -79,7 +79,7 @@
         android:layout_marginTop="16dp" />
 
     <Button
-        android:id="@+id/productButtonBuy"
+        android:id="@+id/productButtonAddBasket"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Ajouter au Panier"

@@ -17,7 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
  * 
  * @author [Bitoun, Bres, Wallner] - March 2024
  */
-public class LoadingBasketActivity extends AppCompatActivity {
+public class LoadingBuyActivity extends AppCompatActivity {
 
     private final String TAG = "bres, bitoun, wallner " + getClass().getSimpleName();
 
@@ -38,9 +38,9 @@ public class LoadingBasketActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(LoadingBasketActivity.this, "Article ajouté dans le panier", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoadingBuyActivity.this, "Achat éffectuer", Toast.LENGTH_SHORT).show();
                 finish(); // Fin de l'activité après l'affichage du toast
             }
-        }, 1000); // Délai de 4 secondes
+        }, 3000); // Délai de 4 secondes
     }
 }

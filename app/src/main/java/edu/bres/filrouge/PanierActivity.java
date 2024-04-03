@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -12,10 +14,20 @@ public class PanierActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_panier);
+        setContentView(R.layout.activity_shoping);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.navBar);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
+
+        // Gestion du clic sur le bouton "Acheter"
+        Button acheterButton = findViewById(R.id.basketBuyButton);
+        acheterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Démarrer l'activité d'animation
+                startActivity(new Intent(PanierActivity.this, LoadingBuyActivity.class));
+            }
+        });
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =

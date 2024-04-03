@@ -72,7 +72,7 @@ public class ProductAdapter extends BaseAdapter {
 
         // Récupération des éléments
         TextView name = layoutItem.findViewById(R.id.itemTitle);
-        TextView price = layoutItem.findViewById(R.id.itemPrice);
+        TextView price = layoutItem.findViewById(R.id.productPrice);
         TextView rating = layoutItem.findViewById(R.id.itemRatting);
         ImageView picture = layoutItem.findViewById(R.id.itemPicture);
 
