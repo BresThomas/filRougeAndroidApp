@@ -56,6 +56,9 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main); // Assurez-vous d'inflater le bon layout
 
+        BottomNavigationView bottomNavigationView = findViewById(R.id.navBar);
+        bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
+
         final SeekBar seekBar = findViewById(R.id.seekBar);
         seekBar.setMax(10);
         displayNote = findViewById(R.id.value);

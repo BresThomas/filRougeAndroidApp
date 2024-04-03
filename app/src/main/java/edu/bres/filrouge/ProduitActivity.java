@@ -31,6 +31,9 @@ public class ProduitActivity extends AppCompatActivity {
         // Récupération de l'objet Produit de l'intention
         Produit product = getIntent().getParcelableExtra("character");
 
+        BottomNavigationView bottomNavigationView = findViewById(R.id.navBar);
+        bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
+
         // Initialisation des éléments de l'interface utilisateur
         TextView titleTextView = findViewById(R.id.title);
         TextView characterNameText = findViewById(R.id.produitName);
