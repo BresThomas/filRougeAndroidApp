@@ -34,6 +34,7 @@
         <activity android:name=".LoadingBasketActivity"/>
         <activity android:name=".PanierActivity"/>
         <activity android:name=".LoadingBuyActivity"/>
+        <activity android:name=".SettingsActivity"/>
 
     </application>
 </manifest>

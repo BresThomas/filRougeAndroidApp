@@ -14,7 +14,7 @@ public class PanierActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_shoping);
+        setContentView(R.layout.activity_shopping);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.navBar);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);

@@ -2,13 +2,17 @@ package edu.bres.filrouge;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
 import java.util.Locale;
+
+import android.view.View;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -114,6 +118,17 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {}
         });
+
+        ImageView parametreIcon = findViewById(R.id.parametreIcon);
+        parametreIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Intent pour démarrer l'activité des paramètres
+                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         // Réglez la progression initiale et affichez la note
         seekBar.setProgress((int) (rating * 2)); // Convertissez la note en progression de la SeekBar

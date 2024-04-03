@@ -19,6 +19,7 @@ public class ProductShopping {
     private float rating;
     private String pictureLowQuality;
     private String pictureHighQuality;
+    private float price;
 
 
     public int getId() {
@@ -73,6 +74,14 @@ public class ProductShopping {
     }
     public void setPictureHighQuality(String pictureHighQuality) {
         this.pictureHighQuality = pictureHighQuality;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
     }
 
     @Override
